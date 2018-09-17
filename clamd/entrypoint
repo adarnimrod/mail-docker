@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eux
+
+install -d -m 755 -o clamav -g clamav /run/clamav
+
+eval exec "$@"

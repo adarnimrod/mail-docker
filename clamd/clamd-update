@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eux
+
+i=0
+while ! clamd-ping
+do
+    i=$(( i + 1 ))
+    [ "$i" -lt '5' ] || exit 1
+    sleep 10
+done
+
+freshclam --verbose --stdout
+#echo RELOAD | nc -U /run/clamav/clamd.ctl

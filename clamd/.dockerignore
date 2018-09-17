@@ -1,0 +1,5 @@
+*
+!entrypoint
+!clamd.conf
+!clamd-ping
+!clamd-update

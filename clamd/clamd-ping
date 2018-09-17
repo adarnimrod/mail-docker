@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eux
+
+echo PING | nc -U /run/clamav/clamd.ctl || exit 1
+echo PING | nc -t localhost 3310 || exit 1
+exit 0

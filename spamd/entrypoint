@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eux
+
+install -d -m 750 -o debian-spamd -g debian-spamd /run/spamd
+install -d -m 750 -o debian-spamd -g debian-spamd /var/backups/sa-learn
+
+sh -c 'sleep 60; sa-learn --restore /var/backups/sa-learn/backup.txt' &
+
+eval exec "$@"

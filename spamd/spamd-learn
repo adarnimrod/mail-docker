@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eux
+
+for user in $(find /var/mail -maxdepth 1 -mindepth 1 -type d)
+do
+    sa-learn --spam --mbox --forget "$user/Junk" || true
+    find "$user" -maxdepth 1 -type f -print0 | \
+        grep -Zv 'Drafts\|Inbox\|Junk\|Sent' | \
+        xargs -0rn1 -- sa-learn --ham --mbox --forget || true
+done
+
+sa-learn --backup > /var/backups/sa-learn/backup.txt

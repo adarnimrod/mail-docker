@@ -1,0 +1,4 @@
+*
+!*.sieve
+!entrypoint
+!patch.diff

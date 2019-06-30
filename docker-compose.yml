@@ -1,0 +1,46 @@
+# vim:ff=unix:ts=2:sw=2:ai:expandtab
+---
+version: '3.5'
+services:
+  imap:
+    build:
+      context: dovecot/
+    ports:
+      - 993:993
+    environment:
+      LDAP_URIS: ldap://slapd
+      LDAP_BASEDN: 'dc=nowhere,dc=com'
+    volumes:
+      - mail:/var/mail
+      - _run_dovecot:/run/dovecot
+
+  clamd:
+    build:
+      context: clamd/
+    volumes:
+      - _run_clamav:/run/clamav
+
+  spamd:
+    build:
+      context: spamd/
+    volumes:
+      - _run_spamd:/run/spamd
+      - mail:/var/mail:ro
+      - sa_learn:/var/backups/sa-learn
+
+  crond:
+    build:
+      context: crond/
+    volumes:
+      - /run/docker.sock:/run/docker.sock
+
+volumes:
+  _run_spamd:
+  _run_clamav:
+  _run_dovecot:
+  mail:
+  sa_learn:
+
+networks:
+  default:
+    name: shore

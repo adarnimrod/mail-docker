@@ -1,11 +1,12 @@
 FROM buildpack-deps:buster as delete_to_trash
+# hadolint ignore=DL3008,DL3015
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive  apt-get install -y dovecot-dev && \
     git clone https://github.com/pali/dovecot_deleted_to_trash && \
-    cd dovecot_deleted_to_trash && \
-    make
+    make -C dovecot_deleted_to_trash
 
 FROM debian:buster-slim
+# hadolint ignore=DL3008
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         dovecot-ldap \
@@ -24,9 +25,7 @@ COPY patch.diff /root/
 RUN patch --strip 0 --verbose --directory /etc/dovecot --input /root/patch.diff && \
     doveconf
 COPY --chown=mail:mail *.sieve /var/lib/dovecot/sieve.d/
-RUN cd /var/lib/dovecot/sieve.d/ && \
-    ls *.sieve | xargs -tn1 sievec && \
-    rm *.svbin
+RUN find /var/lib/dovecot/sieve.d/ -type f -name '*.sieve' -exec sievec -d {} \;
 VOLUME /var/mail
 VOLUME /run/dovecot
 EXPOSE 993 25

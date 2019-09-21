@@ -1,4 +1,4 @@
-FROM docker:18.09 as docker
+FROM docker:19.03 as docker
 
 # hadolint ignore=DL3006
 FROM adarnimrod/cron as supersonic

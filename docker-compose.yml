@@ -5,24 +5,30 @@ services:
   imap:
     build:
       context: dovecot/
+    environment:
+      LDAP_BASEDN: &ldap_basedn 'dc=nowhere,dc=com'
+      LDAP_URIS: &ldap_uris ldap://slapd
     ports:
       - 993:993
-    environment:
-      LDAP_URIS: ldap://slapd
-      LDAP_BASEDN: 'dc=nowhere,dc=com'
     volumes:
-      - mail:/var/mail
       - _run_dovecot:/run/dovecot
+      - mail:/var/mail
 
   clamd:
     build:
+      cache_from:
+        - adarnimrod/clamd
       context: clamd/
+    image: adarnimrod/clamd
     volumes:
       - _run_clamav:/run/clamav
 
   spamd:
     build:
+      cache_from:
+        - adarnimrod/spamd
       context: spamd/
+    image: adarnimrod/spamd
     volumes:
       - _run_spamd:/run/spamd
       - mail:/var/mail:ro
@@ -39,7 +45,11 @@ volumes:
   _run_clamav:
   _run_dovecot:
   mail:
+    labels:
+      snapshot: 'true'
   sa_learn:
+    labels:
+      snapshot: 'true'
 
 networks:
   default:

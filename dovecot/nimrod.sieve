@@ -1,7 +1,14 @@
 require ["fileinto", "envelope", "imap4flags"];
 if address :is "from" "nimrod@shore.co.il" { setflag "\\seen"; }
 
-if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il", "jobnet.co.il", "cps.co.il", "seev.co.il", "yad2jobs.co.il", "mindu.co.il", "korentec.co.il", "ethosia.com", "ethosia.co.il", "nisha.co.il", "alljob.co.il", "alljobs.co.il", "propel.co.il", "simplyfind.co.il", "jobby.co.il", "niloosoft.com", "qhr.co.il", "dialog.co.il", "taldor.co.il", "linkedin.com", "*.linkedin.com", "hire.withgoogle.com" , "hunterhrms.com", "triplebyte.com", "gun.io", "lever.co", "*.lever.co", "logica-it.co.il" ]
+if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
+"jobnet.co.il", "cps.co.il", "seev.co.il", "yad2jobs.co.il", "mindu.co.il",
+"korentec.co.il", "ethosia.com", "ethosia.co.il", "nisha.co.il", "alljob.co.il",
+"alljobs.co.il", "propel.co.il", "simplyfind.co.il", "jobby.co.il",
+"niloosoft.com", "qhr.co.il", "dialog.co.il", "taldor.co.il", "linkedin.com",
+"*.linkedin.com", "hire.withgoogle.com" , "hunterhrms.com", "triplebyte.com",
+"gun.io", "lever.co", "*.lever.co", "logica-it.co.il", "lever.co", "*.lever.co",
+"woo.io" ]
 {
 	fileinto "Wanted";
 }
@@ -25,7 +32,7 @@ elsif anyof (address :is :domain "from" [ "travelbird.be", "nitzan-hr.com", "isp
 {
 	fileinto "Junk";
 }
-elsif address :is :domain "from" [ "migdal.co.il", "bezeqint.co.il", "youphone.co.il", "bezeq.co.il", "bezeqint.net", "icount.co.il", "kali.co.il", "ari-ins.co.il", "altshul.co.il", "*.migdal.co.il", "moran-fin.com" ]
+elsif address :is :domain "from" [ "migdal.co.il", "*.migdal.co.il", "bezeqint.co.il", "youphone.co.il", "bezeq.co.il", "bezeqint.net", "kali.co.il", "ari-ins.co.il", "altshul.co.il", "*.migdal.co.il", "moran-fin.com", "migdigital.co.il", "*.migdigital.co.il" ]
 {
 	fileinto "Saved";
 }
@@ -39,7 +46,7 @@ elsif anyof (address :is "from" [ "or.siniminis@gmail.com", "hastudio.theater@gm
 	setflag "\\seen";
 	fileinto "Cinematheque";
 }
-elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il" ]
+elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il", "icount.co.il" ]
 {
 	fileinto "Shore";
 }
@@ -79,7 +86,14 @@ elsif address :is :domain "from" [ "google.com", "*.google.com" ]
 {
 	fileinto "Google";
 }
-elsif address :is :domain "from" [ "leumi.co.il", "*.leumi.co.il", "leumi-card.co.il", "*.leumi-card.co.il", "leumicard.co.il", "*.leumicard.co.il" ]
+elsif address :is :domain "from" [ "leumi.co.il", "*.leumi.co.il",
+"leumi-card.co.il", "*.leumi-card.co.il", "leumicard.co.il",
+"*.leumicard.co.il", "icc.co.il" ]
 {
     fileinto "Leumi";
+}
+elsif address :is :domain "from" [ "mizrahi-tefahot.co.il",
+"*.mizrahi-tefahot.co.il", "umtb.co.il", "*.umtb.co.il" ]
+{
+	fileinto "Mizrahi";
 }

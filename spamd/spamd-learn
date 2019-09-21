@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eux
 
+# shellcheck disable=SC2044
 for user in $(find /var/mail -maxdepth 1 -mindepth 1 -type d)
 do
     sa-learn --spam --mbox --forget "$user/Junk" || true

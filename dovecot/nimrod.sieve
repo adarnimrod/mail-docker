@@ -60,7 +60,7 @@ elsif address :is :domain "from" [ "wiser.com", "wisepricer.com" ]
 }
 elsif address :is :domain "from" [ "scaleway.com", "*.scaleway.com", "online.net", "*.online.net" ]
 {
-	fileinto "scaleway";
+    fileinto "scaleway";
 }
 elsif address :is :domain "from" [ "spot.im" ]
 {

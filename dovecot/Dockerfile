@@ -25,7 +25,8 @@ COPY patch.diff /root/
 RUN patch --strip 0 --verbose --directory /etc/dovecot --input /root/patch.diff && \
     doveconf
 COPY --chown=mail:mail *.sieve /var/lib/dovecot/sieve.d/
-RUN find /var/lib/dovecot/sieve.d/ -type f -name '*.sieve' -exec sievec -d {} \;
+# hadolint ignore=DL4006
+RUN find /var/lib/dovecot/sieve.d/ -type f -name '*.sieve' -print0 | xargs -0n1 sievec -d
 VOLUME /var/mail
 VOLUME /run/dovecot
 EXPOSE 993 25

@@ -2,5 +2,5 @@
 set -eux
 
 sa-check_spamd --verbose --socketpath /run/spamd/spamd.sock || exit 1
-sa-check_spamd --verbose --hostname localhost || exit 1
+sa-check_spamd --verbose --hostname localhost --port 7783 || exit 1
 exit 0

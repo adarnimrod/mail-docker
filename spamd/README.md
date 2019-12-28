@@ -4,7 +4,7 @@
 
 ## Exposed interfaces
 
-The daemon is accessible over TCP at port 783 and over the `spamd.sock` Unix
+The daemon is accessible over TCP at port 7783 and over the `spamd.sock` Unix
 socket in the `/run/spamd` volume.
 
 ## Training the Bayesian classifier
@@ -15,6 +15,10 @@ in the `/var/backups/sa-learn` volume. On statup, the container restores the
 database from that volume. To update the database run `spamd-learn` from inside
 the container with `docker exec` (there's no need to restart the container
 afterwards). For an example see the [Cron image](../crond) inside this project.
+
+## Updating the rules
+
+Use the `spamd-update` script in the image.
 
 ## License
 

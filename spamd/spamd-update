@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eux
+
+sa-update --gpghomedir /var/lib/spamassassin/sa-update-keys --verbose || exitcode="$?"
+
+if [ "${exitcode:-0}" -eq '0' ]
+then
+    echo 'Successful update, recompiling rules and reloading spamd.' >&2
+    sa-compile || true
+    kill -HUP "$(cat /var/run/spamd.pid)" || true
+elif [ "${exitcode}" -eq '1' ]
+then
+    echo 'No updates were available, exiting.' >&2
+    exit 0
+else
+    echo "Update failed, exit code $exitcode." >&2
+    exit "$exitcode"
+fi

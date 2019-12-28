@@ -1,2 +1,3 @@
 @daily docker exec mail_clamd_1 clamd-update
 @daily docker exec mail_spamd_1 spamd-learn
+@daily docker exec mail_spamd_1 spamd-update

@@ -25,8 +25,8 @@ RUN apt-get update && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /var/cache/apt/archives/*
 COPY --chown=root:root entrypoint /usr/local/bin/
 COPY --chown=Debian-exim:Debian-exim aliases /etc/aliases
-COPY exim4.conf /etc/exim4/exim4.conf
-RUN exim4 -bV
+COPY --chown=root:root exim4.conf /etc/exim4/exim4.conf
+RUN ls -l /etc/exim4/exim4.conf && exim4 -bV
 #USER Debian-exim
 WORKDIR /var/spool/exim4
 ENTRYPOINT ["entrypoint"]

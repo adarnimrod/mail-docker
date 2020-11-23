@@ -5,6 +5,7 @@ repos:
     rev: v2.3.0
     hooks:
       - id: check-added-large-files
+      - id: check-executables-have-shebangs
       - id: check-merge-conflict
       - id: detect-private-key
       - id: trailing-whitespace
@@ -19,7 +20,7 @@ repos:
       - id: proselint
         types: [plain-text]
         exclude: LICENSE
-  - repo: https://www.shore.co.il/git/docker-pre-commit
+  - repo: https://git.shore.co.il/nimrod/docker-pre-commit.git/
     rev: v0.3.0
     hooks:
       - id: docker-compose
@@ -29,3 +30,8 @@ repos:
     hooks:
       - id: detect-secrets
         exclude: \.diff$
+  - repo: https://git.shore.co.il/nimrod/shell-pre-commit.git
+    rev: v0.6.0
+    hooks:
+      - id: shell-lint
+      - id: shellcheck

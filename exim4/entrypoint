@@ -1,0 +1,33 @@
+#!/bin/sh
+set -eux
+
+# Set the mail name.
+if [ -n "${MAILNAME:-}" ]
+then
+    echo "$MAILNAME" > /etc/mailname
+else
+    hostname > /etc/mailname
+fi
+
+# Set the root mail alias, if environment variable is present.
+[ -z "${ROOT_ALIAS:-}" ] || echo "root: $ROOT_ALIAS" >> /etc/aliases
+
+# Generate self-signed certificates if none are provided.
+if [ "${TLS_CERT_FILE:-/etc/ssl/certs/ssl-cert-snakeoil.pem}" = "/etc/ssl/certs/ssl-cert-snakeoil.pem" ] || \
+   [ "${TLS_KEY_FILE:-/etc/ssl/private/ssl-cert-snakeoil.key}" = "/etc/ssl/private/ssl-cert-snakeoil.key" ]
+then
+    echo Generating self-signed key and certificate. >&2
+    DEBIAN_FRONTEND=noninteractive time fakeroot make-ssl-cert generate-default-snakeoil --force-overwrite
+fi
+
+# Generate a DKIM keys if none are specifiec.
+
+if [ "${DKIM_PRIVATE_KEY:-/etc/exim4/dkim.key}" = "/etc/exim4/dkim.key" ]
+then
+    echo Generating DKIM keys. >&2
+    openssl genrsa -out /etc/exim4/dkim.key 2048
+    echo Public DKIM key >&2
+    openssl rsa -in /etc/exim4/dkim.key -pubout -outform PEM >&2
+fi
+
+eval exec "$@"

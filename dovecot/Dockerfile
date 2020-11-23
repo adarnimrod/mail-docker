@@ -17,6 +17,7 @@ RUN apt-get update && \
         ssl-cert \
         time \
     && \
+    install -d -m 777 -o mail -g mail /var/lib/dovecot/sieve.d && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /var/cache/apt/archives/*
 COPY --from=delete_to_trash /dovecot_deleted_to_trash/lib_deleted_to_trash_plugin.so /usr/lib/dovecot/modules/
 COPY --from=delete_to_trash /dovecot_deleted_to_trash/95-deleted_to_trash_plugin.conf /etc/dovecot/conf.d/
@@ -32,4 +33,4 @@ VOLUME /run/dovecot
 EXPOSE 993 25
 ENTRYPOINT [ "/entrypoint" ]
 CMD [ "dovecot", "-F" ]
-HEALTHCHECK CMD doveadm service status || exit 1
+HEALTHCHECK --start-period=5m CMD doveadm service status || exit 1

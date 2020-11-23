@@ -6,29 +6,43 @@ services:
     build:
       context: dovecot/
     environment:
-      LDAP_BASEDN: &ldap_basedn 'dc=nowhere,dc=com'
-      LDAP_URIS: &ldap_uris ldap://slapd
+      LDAP_BASEDN: &ldap_basedn |-
+        ${LDAP_BASE_DN:-ou=People,dc=shore,dc=co,dc=il}
+      LDAP_URIS: &ldap_uris '${LDAP_URIS:-ldapi:///}'
+      TLS_CERT_FILE: &tls_cert_file /var/ssl/mail.crt
+      TLS_KEY_FILE: &tls_key_file /var/ssl/mail.key
+    hostname: &imap_hostname imap.shore.co.il
+    networks:
+      default:
+        aliases:
+          - *imap_hostname
     ports:
       - 993:993
+    restart: always
     volumes:
+      - _run_slapd:/run/slapd
       - _run_dovecot:/run/dovecot
       - mail:/var/mail
+      - /var/ssl:/var/ssl:ro
 
   clamd:
     build:
-      cache_from:
-        - adarnimrod/clamd
+      # cache_from:
+      #   - adarnimrod/clamd
       context: clamd/
-    image: adarnimrod/clamd
+    # image: adarnimrod/clamd
+    restart: always
     volumes:
       - _run_clamav:/run/clamav
+      - spool:/var/spool/exim4
 
   spamd:
     build:
-      cache_from:
-        - adarnimrod/spamd
+      # cache_from:
+      #   - adarnimrod/spamd
       context: spamd/
-    image: adarnimrod/spamd
+    # image: adarnimrod/spamd
+    restart: always
     volumes:
       - _run_spamd:/run/spamd
       - mail:/var/mail:ro
@@ -37,19 +51,58 @@ services:
   crond:
     build:
       context: crond/
+    restart: always
     volumes:
       - /run/docker.sock:/run/docker.sock
+
+  smtp:
+    build:
+      context: exim4/
+    environment:
+      # CLAMD_ADDRESS: clamd 3310
+      LDAP_URIS: *ldap_uris
+      LDAP_BASEDN: *ldap_basedn
+      # LMTP_ADDRESS: /run/dovecot/lmtp
+      DOMAIN: &domain "${DOMAIN:-shore.co.il}"
+      MAILNAME: &mailname "${MAILNAME:-smtp}.${DOMAIN:-shore.co.il}"
+      ROOT_ALIAS: "${ROOT_ALIAS:-nimrod}"
+      # SPAMD_ADDRESS: /run/spamd/spamd.sock
+      TLS_CERT_FILE: *tls_cert_file
+      TLS_KEY_FILE: *tls_key_file
+      DKIM_KEY_FILE: /var/ssl/dkim.key
+      DKIM_SELECTOR: host01
+    hostname: *mailname
+    networks:
+      default:
+        aliases:
+          - *mailname
+    ports:
+      - '25:25'
+      - 587:587
+    restart: always
+    volumes:
+      - _run_slapd:/run/slapd
+      - _run_clamav:/run/clamav
+      - _run_dovecot:/run/dovecot
+      - _run_spamd:/run/spamd
+      - spool:/var/spool/exim4
+      - /var/ssl:/var/ssl:ro
 
 volumes:
   _run_spamd:
   _run_clamav:
+    name: run_clamav
   _run_dovecot:
   mail:
     labels:
       snapshot: 'true'
+  spool:
   sa_learn:
     labels:
       snapshot: 'true'
+  _run_slapd:
+    external: true
+    name: run_slapd
 
 networks:
   default:

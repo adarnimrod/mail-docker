@@ -31,6 +31,7 @@ RUN find /var/lib/dovecot/sieve.d/ -type f -name '*.sieve' -print0 | xargs -0n1 
 VOLUME /var/mail
 VOLUME /run/dovecot
 EXPOSE 993 25
+ENV TLS_DHPARAMS_FILE /usr/share/dovecot/dh.pem
 ENTRYPOINT [ "/entrypoint" ]
 CMD [ "dovecot", "-F" ]
 HEALTHCHECK --start-period=5m CMD doveadm service status || exit 1

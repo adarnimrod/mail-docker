@@ -4,7 +4,7 @@ set -eux
 install -d -m 755 -o dovecot -g root /var/run/dovecot
 install -d -m 775 -o root -g dovecot /var/mail
 install -d -m 775 -o root -g dovecot /run/dovecot
-time openssl dhparam -out /usr/share/dovecot/dh.pem 2048
+[ -f "$TLS_DHPARAMS_FILE" ] || time openssl dhparam -out "$TLS_DHPARAMS_FILE" 2048
 DEBIAN_FRONTEND=noninteractive time make-ssl-cert generate-default-snakeoil --force-overwrite
 
 # I don't know why environment variables aren't expanded and I'm too interested
@@ -14,5 +14,6 @@ sed -i "s@%{env:LDAP_URIS}@$LDAP_URIS@g" /etc/dovecot/dovecot-ldap.conf.ext
 sed -i "s@%{env:LDAP_BASEDN}@$LDAP_BASEDN@g" /etc/dovecot/dovecot-ldap.conf.ext
 sed -i "s@/etc/ssl/private/ssl-cert-snakeoil.key@$TLS_KEY_FILE@g" /etc/dovecot/conf.d/10-ssl.conf
 sed -i "s@/etc/ssl/certs/ssl-cert-snakeoil.pem@$TLS_CERT_FILE@g" /etc/dovecot/conf.d/10-ssl.conf
+sed -i "s@/usr/share/dovecot/dh.pem@$TLS_DHPARAMS_FILE@g" /etc/dovecot/conf.d/10-ssl.conf
 
 eval exec "$@"

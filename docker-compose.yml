@@ -10,6 +10,7 @@ services:
         ${LDAP_BASE_DN:-ou=People,dc=shore,dc=co,dc=il}
       LDAP_URIS: &ldap_uris '${LDAP_URIS:-ldapi:///}'
       TLS_CERT_FILE: &tls_cert_file /var/ssl/mail.crt
+      TLS_DHPARAMS_FILE: /var/ssl/dhparams
       TLS_KEY_FILE: &tls_key_file /var/ssl/mail.key
     hostname: &imap_hostname imap.shore.co.il
     networks:

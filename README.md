@@ -1,5 +1,7 @@
 # Mail containers setup
 
+[![pipeline status](https://git.shore.co.il/shore/ldap-docker/badges/master/pipeline.svg)](https://git.shore.co.il/shore/ldap-docker/-/commits/master)
+
 > A containerized mail server setup.
 
 ## Requirements

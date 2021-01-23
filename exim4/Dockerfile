@@ -26,7 +26,9 @@ RUN apt-get update && \
 COPY --chown=root:root entrypoint /usr/local/bin/
 COPY --chown=Debian-exim:Debian-exim aliases /etc/aliases
 COPY --chown=root:root exim4.conf /etc/exim4/exim4.conf
-RUN ls -l /etc/exim4/exim4.conf && exim4 -bV
+# Chmod is needed because of
+# https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736.
+RUN chmod 644 /etc/exim4/exim4.conf && exim4 -bV
 #USER Debian-exim
 WORKDIR /var/spool/exim4
 ENTRYPOINT ["entrypoint"]

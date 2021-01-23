@@ -1,50 +1,19 @@
 ---
-image: adarnimrod/ci-images:docker
+include:
+  - project: shore/ci-templates
+    file: templates/pre-commit.yml
+  - project: shore/ci-templates
+    file: templates/docker.yml
 
 stages:
   - test
   - build
-  - run
-
-pre-commit:
-  stage: test
-  image: adarnimrod/ci-images:pre-commit
-  variables:
-    XDG_CACHE_HOME: "$CI_PROJECT_DIR/.cache"
-    # Disabled until https://github.com/pre-commit/pre-commit/issues/1387 is
-    # resolved.
-    SKIP: "hadolint,docker-compose"
-  script:
-    - pre-commit run --all-files
-  cache:
-    paths:
-      - .cache/
+  - deploy
 
 build:
-  stage: build
-  tags: ["host01.shore.co.il"]
-  variables:
-    COMPOSE_DOCKER_CLI_BUILD: "1"
-    DOCKER_BUILDKIT: "1"
-  # Fix the permissions because of
-  # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736.
-  before_script:
-    - chmod 644 exim4/exim4.conf
-  script:
-    - docker-compose build --no-cache --pull
-    - docker-compose pull --quiet
+  extends: .compose-build
+  tags: [host01.shore.co.il]
 
 run:
-  stage: run
-  tags: ["host01.shore.co.il"]
-  when: manual
-  script:
-    - docker-compose up --detach --remove-orphans
-    # yamllint disable rule:line-length
-    - |
-        for i in $(seq 12)
-        do
-            docker container inspect --format '{{ .State.Health.Status }}' $(docker-compose ps -q) | grep -v '^healthy$' || break
-            sleep 10
-        done
-        ! docker container inspect --format '{{ .State.Health.Status }}' $(docker-compose ps -q) | grep -v '^healthy$'
+  extends: .compose-run
+  tags: [host01.shore.co.il]

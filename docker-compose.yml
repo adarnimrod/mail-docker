@@ -28,10 +28,7 @@ services:
 
   clamd:
     build:
-      # cache_from:
-      #   - adarnimrod/clamd
       context: clamd/
-    # image: adarnimrod/clamd
     restart: always
     volumes:
       - _run_clamav:/run/clamav
@@ -39,10 +36,7 @@ services:
 
   spamd:
     build:
-      # cache_from:
-      #   - adarnimrod/spamd
       context: spamd/
-    # image: adarnimrod/spamd
     restart: always
     volumes:
       - _run_spamd:/run/spamd

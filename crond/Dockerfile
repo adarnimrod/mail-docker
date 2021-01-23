@@ -1,7 +1,7 @@
 FROM docker:19.03 as docker
 
 # hadolint ignore=DL3006
-FROM adarnimrod/cron as supersonic
+FROM registry.shore.co.il/cron as supersonic
 COPY --from=docker /usr/local/bin/docker /usr/local/bin/
 COPY --chown=root:root crontab /crontab
 # hadolint ignore=DL3002

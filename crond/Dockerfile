@@ -1,4 +1,4 @@
-FROM docker:19.03 as docker
+FROM docker:20.10 as docker
 
 # hadolint ignore=DL3006
 FROM registry.shore.co.il/cron as supersonic

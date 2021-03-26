@@ -12,8 +12,12 @@ stages:
 
 build:
   extends: .compose-build
-  tags: [host01.shore.co.il]
+  tags: &tags [host01.shore.co.il]
+
+pull:
+  extends: .compose-pull
+  tags: *tags
 
 run:
   extends: .compose-run
-  tags: [host01.shore.co.il]
+  tags: *tags

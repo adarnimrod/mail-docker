@@ -39,7 +39,8 @@ elsif anyof (address :is :domain "from" [ "travelbird.be", "nitzan-hr.com",
 {
 	fileinto "Junk";
 }
-elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il", "icount.co.il" ]
+elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il",
+"icount.co.il", "10ten.co.il", "greeninvoices.co.il" ]
 {
 	fileinto "Shore";
 }
@@ -68,4 +69,12 @@ elsif address :is :domain "from" [ "icc.co.il", "*.icc.co.il" ]
 elsif address :is :domain "from" [ "htzone.co.il" ]
 {
     fileinto "htzone";
+}
+elsif address :is :domain "from" ["chorus.one"]
+{
+    fileinto "ChorusOne";
+}
+elsif address :is :domain "from" ["fibi.co.il"]
+{
+    fileinto "fibi";
 }

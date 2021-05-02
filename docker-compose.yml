@@ -54,6 +54,7 @@ services:
     build:
       context: exim4/
     environment:
+      ALT_DOMAINS: nehe.sr
       # CLAMD_ADDRESS: clamd 3310
       LDAP_URIS: *ldap_uris
       LDAP_BASEDN: *ldap_basedn

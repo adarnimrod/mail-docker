@@ -11,7 +11,7 @@ The container exposes TCP ports 25 (SMTP) and 587 (submission).
 Name | Description
 \-\-\- | \-\-\-
 `CLAMD_ADDRESS` | Address of the clamd server (see http://exim.org/exim-html-current/doc/html/spec\_html/ch-content\_scanning\_at\_acl\_time.htm).
-`DKIM_PRIVATE_KEY` |
+`DKIM_KEY_FILE` |
 `DKIM_SELECTOR` |
 `LDAP_URIS` |
 `LDAP_BASEDN` |

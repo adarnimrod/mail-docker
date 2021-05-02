@@ -22,7 +22,7 @@ fi
 
 # Generate a DKIM keys if none are specifiec.
 
-if [ "${DKIM_PRIVATE_KEY:-/etc/exim4/dkim.key}" = "/etc/exim4/dkim.key" ]
+if [ "${DKIM_KEY_FILE:-/etc/exim4/dkim.key}" = "/etc/exim4/dkim.key" ]
 then
     echo Generating DKIM keys. >&2
     openssl genrsa -out /etc/exim4/dkim.key 2048

@@ -78,3 +78,7 @@ elsif address :is :domain "from" ["fibi.co.il"]
 {
     fileinto "fibi";
 }
+elsif address :is :domain "from" ["expertlead.de"]
+{
+    fileinto "expertlead";
+}

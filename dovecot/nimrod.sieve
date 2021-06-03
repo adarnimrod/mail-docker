@@ -1,3 +1,5 @@
+# vim ft=sieve
+
 require ["fileinto", "envelope", "imap4flags"];
 if address :is "from" "nimrod@shore.co.il" { setflag "\\seen"; }
 

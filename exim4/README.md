@@ -9,16 +9,16 @@ The container exposes TCP ports 25 (SMTP) and 587 (submission).
 ## Environment variables
 
 Name | Description
-\-\-\- | \-\-\-
-`CLAMD_ADDRESS` | Address of the clamd server (see http://exim.org/exim-html-current/doc/html/spec\_html/ch-content\_scanning\_at\_acl\_time.htm).
+--- | ---
+`CLAMD_ADDRESS` | Address of the clamd server (see http://exim.org/exim-html-current/doc/html/spec_html/ch-content_scanning_at_acl_time.htm).
 `DKIM_KEY_FILE` |
 `DKIM_SELECTOR` |
 `LDAP_URIS` |
 `LDAP_BASEDN` |
-`LMTP_ADDRESS` | Address of the LMTP server (see http://exim.org/exim-html-current/doc/html/spec\_html/ch-the\_lmtp\_transport.html).
+`LMTP_ADDRESS` | Address of the LMTP server (see http://exim.org/exim-html-current/doc/html/spec_html/ch-the_lmtp_transport.html).
 `MAILNAME` |
 `ROOT_ALIAS` |
-`SPAMD_ADDRESS` | Address of the spamd server (see http://exim.org/exim-html-current/doc/html/spec\_html/ch-content\_scanning\_at\_acl\_time.html).
+`SPAMD_ADDRESS` | Address of the spamd server (see http://exim.org/exim-html-current/doc/html/spec_html/ch-content_scanning_at_acl_time.html).
 `TLS_CERT_FILE` |
 `TLS_KEY_FILE` |
 

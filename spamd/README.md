@@ -11,7 +11,7 @@ socket in the `/run/spamd` volume.
 
 The image comes with the script `spamd-learn` which goes over the mobx files in
 `/var/mail`, uses them for training the classifier and them saves the database
-in the `/var/backups/sa-learn` volume. On statup, the container restores the
+in the `/var/backups/sa-learn` volume. On startup, the container restores the
 database from that volume. To update the database run `spamd-learn` from inside
 the container with `docker exec` (there's no need to restart the container
 afterwards). For an example see the [Cron image](../crond) inside this project.

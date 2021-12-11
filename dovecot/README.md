@@ -10,7 +10,7 @@ socket in the `/run/dovecot` volume (for LTMP submission).
 ## Environment variables
 
 Name | Description
-\-\-\- | \-\-\-
+--- | ---
 `LDAP_URIS` | LDAP URI (eg, `ldapi:///`).
 `LDAP_BASEDN` | LDAP base DN (eg, `dc=example,dc=com`).
 

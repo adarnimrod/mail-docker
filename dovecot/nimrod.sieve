@@ -11,7 +11,8 @@ if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
 "*.linkedin.com", "hire.withgoogle.com" , "hunterhrms.com", "triplebyte.com",
 "gun.io", "lever.co", "*.lever.co", "logica-it.co.il", "lever.co", "*.lever.co",
 "woo.io", "myworkday.com", "*.myworkday.com", "experteer.com",
-"*.experteer.com", "hunted.co.il", "remote.com", "itworks.org.il" ]
+"*.experteer.com", "hunted.co.il", "remote.com", "itworks.org.il",
+"monster.com" ]
 {
 	fileinto "Wanted";
 }
@@ -28,7 +29,8 @@ elsif anyof (
 "circleci.com", "bugs.debian.org", "getcloudify.com", "mqg.org.il",
 "samerica.co.il", "gigaspaces.com", "getcloudify.org", "email.aol.com",
 "microfocus.com", "*.microfocus.com", "statscraft.org.il", "novell.com",
-"mozilla.org", "*.mozilla.org", "htmag.co.il" ],
+"mozilla.org", "*.mozilla.org", "htmag.co.il", "source.parts",
+"zamarin.org.il" ],
     address :is "from" [ "ecomeshek@gmail.com", "ironethaifa@haifa.muni.il", "cloudnativeisrael@gmail.com" ],
     address :is :domain "to" [ "openbsd.org", "meetup.com" ])
 {
@@ -42,7 +44,8 @@ elsif anyof (address :is :domain "from" [ "travelbird.be", "nitzan-hr.com",
 	fileinto "Junk";
 }
 elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il",
-"icount.co.il", "10ten.co.il", "greeninvoices.co.il" ]
+"icount.co.il", "10ten.co.il", "greeninvoices.co.il", "twilio.com",
+"*.twilio.com", "he-cpa.co.il", "greeninvoice.co.il", "messagebird.com" ]
 {
 	fileinto "Shore";
 }
@@ -83,4 +86,8 @@ elsif address :is :domain "from" ["fibi.co.il"]
 elsif address :is :domain "from" ["expertlead.de", "expertlead.com", "expertlead.io"]
 {
     fileinto "expertlead";
+}
+elsif address :is :domain "from" ["smile.io", "letsdeel.com", "deel.support"]
+{
+    fileinto "smile";
 }

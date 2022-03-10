@@ -12,7 +12,7 @@ if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
 "gun.io", "lever.co", "*.lever.co", "logica-it.co.il", "lever.co", "*.lever.co",
 "woo.io", "myworkday.com", "*.myworkday.com", "experteer.com",
 "*.experteer.com", "hunted.co.il", "remote.com", "itworks.org.il",
-"monster.com" ]
+"monster.com", "glassdoor.com" ]
 {
 	fileinto "Wanted";
 }
@@ -45,11 +45,16 @@ elsif anyof (address :is :domain "from" [ "travelbird.be", "nitzan-hr.com",
 }
 elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il",
 "icount.co.il", "10ten.co.il", "greeninvoices.co.il", "twilio.com",
-"*.twilio.com", "he-cpa.co.il", "greeninvoice.co.il", "messagebird.com" ]
+"*.twilio.com", "he-cpa.co.il", "greeninvoice.co.il", "messagebird.com",
+"letsdeel.com", "deel.support" ]
 {
 	fileinto "Shore";
 }
-elsif address :is "to" [ "abuse@shore.co.il", "clamav@shore.co.il", "ftp@shore.co.il", "hostmaster@shore.co.il", "mailer-daemon@shore.co.il", "news@shore.co.il", "nobody@shore.co.il", "noc@shore.co.il", "postmaster@shore.co.il", "root@shore.co.il", "security@shore.co.il", "usenet@shore.co.il", "webmaster@shore.co.il", "www@shore.co.il" ]
+elsif address :is "to" [ "abuse@shore.co.il", "clamav@shore.co.il",
+"ftp@shore.co.il", "hostmaster@shore.co.il", "mailer-daemon@shore.co.il",
+"news@shore.co.il", "nobody@shore.co.il", "noc@shore.co.il",
+"postmaster@shore.co.il", "root@shore.co.il", "security@shore.co.il",
+"usenet@shore.co.il", "webmaster@shore.co.il", "www@shore.co.il" ]
 {
 	fileinto "Root";
 }
@@ -87,7 +92,7 @@ elsif address :is :domain "from" ["expertlead.de", "expertlead.com", "expertlead
 {
     fileinto "expertlead";
 }
-elsif address :is :domain "from" ["smile.io", "letsdeel.com", "deel.support"]
+elsif address :is :domain "from" ["smile.io"]
 {
     fileinto "smile";
 }

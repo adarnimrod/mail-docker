@@ -12,7 +12,7 @@ if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
 "gun.io", "lever.co", "*.lever.co", "logica-it.co.il", "lever.co", "*.lever.co",
 "woo.io", "myworkday.com", "*.myworkday.com", "experteer.com",
 "*.experteer.com", "hunted.co.il", "remote.com", "itworks.org.il",
-"monster.com", "glassdoor.com" ]
+"monster.com", "glassdoor.com", "careeralerts.data.ai" ]
 {
 	fileinto "Wanted";
 }
@@ -46,7 +46,8 @@ elsif anyof (address :is :domain "from" [ "travelbird.be", "nitzan-hr.com",
 elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il",
 "icount.co.il", "10ten.co.il", "greeninvoices.co.il", "twilio.com",
 "*.twilio.com", "he-cpa.co.il", "greeninvoice.co.il", "messagebird.com",
-"letsdeel.com", "deel.support" ]
+"letsdeel.com", "deel.support", "bezeqint.co.il", "bezeq.co.il",
+"cellopark.co.il" ]
 {
 	fileinto "Shore";
 }
@@ -95,4 +96,12 @@ elsif address :is :domain "from" ["expertlead.de", "expertlead.com", "expertlead
 elsif address :is :domain "from" ["smile.io"]
 {
     fileinto "smile";
+}
+elsif address :is :domain "from" ["google.com", "*.google.com"]
+{
+    fileinto "Google";
+}
+elsif address :is :domain "from" ["schoollinks.com"]
+{
+    fileinto "schoollinks";
 }

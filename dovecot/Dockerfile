@@ -1,11 +1,11 @@
-FROM buildpack-deps:buster as delete_to_trash
+FROM buildpack-deps:bullseye as delete_to_trash
 # hadolint ignore=DL3008,DL3015
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive  apt-get install -y dovecot-dev && \
     git clone https://github.com/pali/dovecot_deleted_to_trash && \
     make -C dovecot_deleted_to_trash
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 # hadolint ignore=DL3008
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \

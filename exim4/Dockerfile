@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM docker.io/debian:bullseye-slim
 # hadolint ignore=DL3008,DL4006
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \

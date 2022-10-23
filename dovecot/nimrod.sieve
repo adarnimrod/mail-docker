@@ -97,7 +97,7 @@ elsif address :is :domain "from" ["smile.io"]
 {
     fileinto "smile";
 }
-elsif address :is :domain "from" ["google.com", "*.google.com"]
+elsif address :is :domain "from" ["google.com", "*.google.com", "youtube.com"]
 {
     fileinto "Google";
 }

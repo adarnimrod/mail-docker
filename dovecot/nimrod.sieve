@@ -16,6 +16,10 @@ if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
 {
 	fileinto "Wanted";
 }
+elsif address :is "from" [ "workatastartup@ycombinator.com" ]
+{
+    fileinto "Wanted";
+}
 elsif anyof (
     address :is :domain "from" [ "community.popcorncomputer.com", "puppet.com",
 "devopsdays.org", "teleticket.co.il", "puppetlabs.com", "drivehq.com",

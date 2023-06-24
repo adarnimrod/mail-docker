@@ -1,11 +1,11 @@
-FROM docker.io/buildpack-deps:bullseye as delete_to_trash
+FROM docker.io/buildpack-deps:bookworm as delete_to_trash
 # hadolint ignore=DL3008,DL3015
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive  apt-get install -y dovecot-dev && \
     git clone https://github.com/pali/dovecot_deleted_to_trash && \
     make -C dovecot_deleted_to_trash
 
-FROM docker.io/debian:bullseye-slim
+FROM docker.io/debian:bookworm-slim
 # hadolint ignore=DL3008
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \

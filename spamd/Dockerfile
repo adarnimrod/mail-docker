@@ -7,6 +7,7 @@ RUN apt-get update && \
         sa-compile \
         spamassassin \
         spamc \
+        spamd \
     && \
     usermod --append --groups mail debian-spamd && \
     install -m 640 -o debian-spamd -g debian-spamd /dev/null /var/run/spamd.pid && \

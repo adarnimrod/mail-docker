@@ -113,3 +113,7 @@ elsif address :is :domain "from" ["toptal.com", "*.toptal.com"]
 {
     fileinto "toptal";
 }
+elsif address :is :domain "from" ["workgenius.com", "*.workgenius.com"]
+{
+    fileinto "workgenius";
+}

@@ -51,7 +51,7 @@ elsif address :is :domain "from" [ "startcom.org", "davidcpa.co.il",
 "icount.co.il", "10ten.co.il", "greeninvoices.co.il", "twilio.com",
 "*.twilio.com", "he-cpa.co.il", "greeninvoice.co.il", "messagebird.com",
 "letsdeel.com", "deel.support", "bezeqint.co.il", "bezeq.co.il",
-"cellopark.co.il" ]
+"cellopark.co.il", "paperless.tax" ]
 {
 	fileinto "Shore";
 }

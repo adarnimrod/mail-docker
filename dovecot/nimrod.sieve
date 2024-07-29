@@ -13,7 +13,7 @@ if address :is :domain "from" [ "drushim.co.il", "indeed.com", "picaro.co.il",
 "woo.io", "myworkday.com", "*.myworkday.com", "experteer.com",
 "*.experteer.com", "hunted.co.il", "remote.com", "itworks.org.il",
 "monster.com", "glassdoor.com", "careeralerts.data.ai", "hirely.tech",
-"allstarsit.com" ]
+"allstarsit.com", "x-team.com" ]
 {
 	fileinto "Wanted";
 }

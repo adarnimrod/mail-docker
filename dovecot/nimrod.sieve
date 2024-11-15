@@ -74,7 +74,7 @@ elsif address :is "from" [ "irist@zy1882.co.il", "tzaharon@zamarin.org.il" ]
 {
     fileinto "Daycare";
 }
-elsif address :is "from" [ "mail.amt.law@gmail.com", "mati@amt-law.co.il" ]
+elsif address :is "from" [ "mail.amt.law@gmail.com", "mati@amt-law.co.il", "ronit.binenboim@gmail.", "ronit.binenboim@googlemail.com" ]
 {
     fileinto "Divorce";
 }

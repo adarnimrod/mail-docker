@@ -20,7 +20,7 @@ then
     DEBIAN_FRONTEND=noninteractive time fakeroot make-ssl-cert generate-default-snakeoil --force-overwrite
 fi
 
-# Generate a DKIM keys if none are specifiec.
+# Generate a DKIM keys if none are specific.
 
 if [ "${DKIM_KEY_FILE:-/etc/exim4/dkim.key}" = "/etc/exim4/dkim.key" ]
 then

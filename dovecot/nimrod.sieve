@@ -118,7 +118,6 @@ elsif address :is :domain "from" ["workgenius.com", "*.workgenius.com"]
 {
     fileinto "workgenius";
 }
-elsif
 elsif anyof (
     address :is "from" ["idanmisrad@gmail.com"],
     address :is :domain "from" ["profit-fs.com", "meitav.co.il", "harel-ins.co.il"]
